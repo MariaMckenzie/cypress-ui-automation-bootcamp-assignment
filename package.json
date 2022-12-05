@@ -4,10 +4,10 @@
   "description": "Cypress UI automation assignment",
   "main": "index.js",
   "scripts": {
-    "cypress:open": "cypress open",
-    "cypress:headed": "cypress run --headed",
-    "cypress:headless": "cypress run --headless",
-    "cypress:spec": "cypress run --spec"
+    "cypress:open": "npx cypress open",
+    "cypress:headed": "npx cypress run --headed",
+    "cypress:headless": "npx cypress run --headless",
+    "cypress:spec": "npx cypress run --spec"
   },
   "keywords": [],
   "author": "",
