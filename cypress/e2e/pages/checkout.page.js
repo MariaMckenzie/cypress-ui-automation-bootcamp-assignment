@@ -6,115 +6,91 @@
 class Checkout {
     
     /**
-     * @returns the checkout title -- "Checkout: Your Information"
+     * @returns the checkout title
      */
     get title () { return (".header_secondary_container .title") }
 
     
     /**
-     * @returns 
+     * @returns the input field for the user's firstname
      */
-    get checkoutList () { return ("#first-name") }
+    get firstnameInput () { return ("#first-name") }
 
     
     /**
-     * @returns item name
+     * @returns the input field for the user's lastname
      */
-    get itemName () { return (".inventory_item_name") }
+    get lastnameInput () { return ("#last-name") }
 
 
     /**
-     * @returns item description
+     * @returns the input field for the user's postal code 
      */
-    get itemDescription () { return (".inventory_item_desc") }
+    get postalCodeInput () { return ("#postal-code") }
 
          
     /**
-     * @returns item price
+     * @returns an error message for missing data
      */
-    get itemPrice () { return (".inventory_item_price") }
+    get errorMessage () { return (".error-message-container.error h3") }
 
 
     /**
-     * @returns add to checkout button
+     * @returns proceed with checkout button
      */
-    get removeButton () { return (".item_pricebar button") }
+    get continueButton () { return ("#continue") }
 
 
     /**
-     * @returns checkout button
+     * @returns the subtotal
      */
-     get checkoutButton () { return ("#checkout") }
+    get subtotal () { return (".summary_info .summary_subtotal_label") }
 
 
     /**
-     * @returns continue shopping button
+     * @returns finish checkout button
      */
-    get checkoutButton () { return ("#continue-shopping") }
+    get finishCheckoutButton () { return ("#finish") }
 
-   
+
+    /**
+     * @returns title for thank you page
+     */
+    get thankyouTitle () { return (".complete-header") }
+
+
+    /**
+     * @returns text on the thank you page -
+     */
+    get thankyouText () { return (".complete-text") }
+
+
+    /**
+     * @returns back to products button
+     */
+    get backButton () { return ("#back-to-products") }
+
+
 
     // METHODS   
 
     /**
-     * Checkout items in the checkout 
+     * Continue to step two of checkout process
+     * @param {String} firstname
+     * @param {String} lastname
+     * @param {String} postalcode
      */
-    checkout () {       
-        cy.get(this.checkoutButton).click()
+    continueToStepTwo (firstname, lastname, postalcode) {
+        cy.get(this.firstnameInput).type(firstname)
+        cy.get(this.lastnameInput).type(lastname)
+        cy.get(this.postalCodeInput).type(postalcode)
+        cy.get(this.continueButton).click()
     }
 
-
-    /**
-     * Remove the nth item to checkout 
-     * @param {Number} itemNo nth item in the list
-     */
-    removeFromcheckout (itemNo) {
-        cy.get(`${this.checkoutList}:nth-child(${itemNo+2}) ${this.removeButton}`).click()
+    completeStepTwo () {
+        cy.get(this.finishCheckoutButton).click()
     }
 
-    
-    /**
-     * @param {Number} itemNo nth item in the list
-     * @returns the item description container for the nth item in the checkout
-     */
-     getItemInformation (itemNo) {
-        return `${this.checkoutList}:nth-child(${itemNo+2})`
-    }
-
-
-    /**
-     * @returns the item description container for the last item in the checkout
-     */
-    getLastItemInformation () {
-        return `${this.checkoutList}:last-child()`
-    }
-    
-
-    /**
-     * Get the item name for the nth item
-     * @param {Number} itemNo nth item in the list
-     */
-    getItemName (itemNo) {
-        return (`${this.checkoutList}:nth-child(${itemNo+2}) ${this.itemName}`)
-    }
-    
-    
-    /**
-     * Get the item description for the nth item
-     * @param {Number} itemNo nth item in the list
-     */
-    getItemDescription (itemNo) {
-        return (`${this.checkoutList}:nth-child(${itemNo+2}) ${this.itemDescription}`)
-    }
-    
-    
-    /**
-     * Get the item price for the nth item
-     * @param {Number} itemNo nth item in the list
-     */
-    getItemPrice (itemNo) {
-        return (`${this.checkoutList}:nth-child(${itemNo+2}) ${this.itemPrice}`)
-    }
 
 }
 export default new Checkout()

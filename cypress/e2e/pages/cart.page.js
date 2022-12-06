@@ -50,7 +50,7 @@ class Cart {
     /**
      * @returns continue shopping button
      */
-    get checkoutButton () { return ("#continue-shopping") }
+    get continueShoppingButton () { return ("#continue-shopping") }
 
    
 
