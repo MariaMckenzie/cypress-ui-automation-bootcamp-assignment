@@ -1,22 +1,26 @@
 module.exports = {
-    standardUser: {
-        username: 'standard_user',
-        password: 'secret_sauce',
+    user1: {
+        firstname: 'John',
+        lastname: 'Doe',
+        postal: '00000',
         errorMsg: ''
     },
-    lockedOutUser: {
-        username: 'locked_out_user',
-        password: 'secret_sauce',
-        errorMsg: 'Sorry, this user has been locked out.'
+    user2: {
+        firstname: '',
+        lastname: 'Doe',
+        postal: '00000',
+        errorMsg: 'Error: First Name is required'
     },
-    problemUser: {
-        username: 'problem_user',
-        password: 'secret_sauce',
-        errorMsg: ''
+    user3: {
+        firstname: 'John',
+        lastname: '',
+        postal: '00000',
+        errorMsg: 'Error: Last Name is required'
     },
-    performanceGlitchUser: {
-        username: 'performance_glitch_user',
-        password: 'secret_sauce',
-        errorMsg: ''
+    user4: {
+        firstname: 'John',
+        lastname: 'Doe',
+        postal: '00000',
+        errorMsg: 'Error: Postal Code is required'
     }
 }
