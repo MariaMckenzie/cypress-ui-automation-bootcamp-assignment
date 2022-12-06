@@ -26,19 +26,14 @@ class Login {
     // METHODS
 
     /**
-     * @args username: String, password: String
+     * Logs in the user
+     * @param {String} username
+     * @param {String} password
      */
     login (username, password) { 
         cy.get(this.usernameInput).type(username)
         cy.get(this.passwordInput).type(password)
         cy.get(this.loginButton).click()
-    }
-
-    /**
-     * @route to the login page
-     */
-    route () {
-        cy.visit("/")
     }
 }
 export default new Login()
