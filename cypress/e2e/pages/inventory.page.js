@@ -119,6 +119,24 @@ class Inventory {
      addToCart (itemNo) {
         cy.get(`${this.inventoryListItems}:nth-child(${itemNo}) ${this.addOrRemoveButton}`).click()
     }
+
+
+    /**
+     * Remove an item from cart
+     * @param {Number} itemNo nth item in the list
+     */
+    removeFromCart (itemNo) {
+        cy.get(`${this.inventoryListItems}:nth-child(${itemNo}) ${this.addOrRemoveButton}`).click()
+    }
+
+    
+    /**
+     * Goes to the product page of the selected item
+     * @param {Number} itemNo nth item in the list
+     */
+    goToProductPage (itemNo) {
+        cy.get(`${this.inventoryListItems}:nth-child(${itemNo}) ${this.itemName}`).click()
+    }
     
     
     /**

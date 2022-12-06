@@ -37,11 +37,13 @@ class Login {
      * @param {String} password
      */
     login (username, password) { 
-        if (username === '') {
-            cy.get(this.passwordInput).type(password)
+        if (username === '' & password === '') {
             cy.get(this.loginButton).click()
         } else if (password === '') {
             cy.get(this.usernameInput).type(username)
+            cy.get(this.loginButton).click()
+        } else if (username === '') {
+            cy.get(this.passwordInput).type(password)
             cy.get(this.loginButton).click()
         } else {
             cy.get(this.usernameInput).type(username)

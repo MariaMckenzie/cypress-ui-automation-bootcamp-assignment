@@ -86,12 +86,37 @@ class Checkout {
      * @param {String} postalcode
      */
     continueToStepTwo (firstname, lastname, postalcode) {
-        cy.get(this.firstnameInput).type(firstname)
-        cy.get(this.lastnameInput).type(lastname)
-        cy.get(this.postalCodeInput).type(postalcode)
-        cy.get(this.continueButton).click()
+        if (firstname === '' & lastname === '' &  postalcode === '') {            
+            cy.get(this.continueButton).click()
+        } else if  (firstname === '') {
+            cy.get(this.lastnameInput).type(lastname)
+            cy.get(this.postalCodeInput).type(postalcode)
+            cy.get(this.continueButton).click()
+        } else if  (lastname === '') {
+            cy.get(this.firstnameInput).type(firstname)
+            cy.get(this.postalCodeInput).type(postalcode)
+            cy.get(this.continueButton).click()
+        } else if  (postalcode === '') {
+            cy.get(this.firstnameInput).type(firstname)
+            cy.get(this.lastnameInput).type(lastname)
+            cy.get(this.continueButton).click()
+        } else {
+            cy.get(this.firstnameInput).type(firstname)
+            cy.get(this.lastnameInput).type(lastname)
+            cy.get(this.postalCodeInput).type(postalcode)
+            cy.get(this.continueButton).click()
+        }
     }
 
+
+    /**
+     * Clear form fields
+     */
+    clearForm () {        
+        cy.get(this.firstnameInput).clear()
+        cy.get(this.lastnameInput).clear()
+        cy.get(this.postalCodeInput).clear()
+    }
 
     /**
      * Proceeds to the next step of the checkout process

@@ -47,44 +47,29 @@ class Product {
     get addOrRemoveButton () { return (".inventory_details_desc_container button") }
 
    
-    // METHODS
-     
-    
+    // METHODS    
 
     /**
-     * Add the nth item to cart 
-     * @param {Number} itemNo nth item in the list
+     * Add product to cart 
      */
-     addToCart (itemNo) {
-        cy.get(`${this.productList} > div:nth-child(${itemNo}) ${this.addToCartButton}`).click()
-    }
-    
-    
-    /**
-     * Get the item name for the nth item
-     * @param {Number} itemNo nth item in the list
-     */
-     getItemName (itemNo) {
-        return cy.get(`${this.productList} > div:nth-child(${itemNo}) ${this.itemName}`).val()
-    }
-    
-    
-    /**
-     * Get the item description for the nth item
-     * @param {Number} itemNo nth item in the list
-     */
-    getItemDescription (itemNo) {
-        return cy.get(`${this.productList} > div:nth-child(${itemNo}) ${this.itemDescription}`).val()
-    }
-    
-    
-    /**
-     * Get the item price for the nth item
-     * @param {Number} itemNo nth item in the list
-     */
-    getItemPrice (itemNo) {
-        return cy.get(`${this.productList} > div:nth-child(${itemNo}) ${this.itemPrice}`).val()
+    addToCart () {
+        cy.get(this.addOrRemoveButton).click()
     }
 
+
+    /**
+     * Remove product from cart
+     */
+    removeFromCart () {
+        cy.get(this.addOrRemoveButton).click()
+    }
+
+    /**
+     * Go back to inventory
+     */
+    goToInventory () {
+        cy.get("#back-to-products").click()
+    }
+    
 }
 export default new Product()
