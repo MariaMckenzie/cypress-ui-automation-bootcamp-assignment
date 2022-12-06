@@ -71,6 +71,11 @@ class Checkout {
     get backButton () { return ("#back-to-products") }
 
 
+    /**
+     * @returns the product in the checkout page
+     */
+    get itemsList () { return (".cart_list") }
+
 
     // METHODS   
 
@@ -87,8 +92,30 @@ class Checkout {
         cy.get(this.continueButton).click()
     }
 
+
+    /**
+     * Proceeds to the next step of the checkout process
+     */
     completeStepTwo () {
         cy.get(this.finishCheckoutButton).click()
+    }
+
+
+    /**
+     * @param {Number} itemNo
+     * @returns the name of the nth item on the list
+     */
+     checkCartItemName (itemNo) {
+        return `${this.itemsList}> :nth-child(${itemNo+2}) .inventory_item_name`
+    }
+
+
+    /**
+     * @param {Number} itemNo
+     * @returns the price of the nth item on the list
+     */
+     checkCartItemPrice (itemNo) {
+        return `${this.itemsList}> :nth-child(${itemNo+2}) .inventory_item_price`
     }
 
 
