@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "cypress:open": "npx cypress open",
+    "cypress:run": "npx cypress run",
     "cypress:headed": "npx cypress run --headed",
     "cypress:headless": "npx cypress run --headless",
     "cypress:spec": "npx cypress run --spec"
