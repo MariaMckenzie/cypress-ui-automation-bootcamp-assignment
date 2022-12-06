@@ -54,7 +54,7 @@ describe("Data Driven Login", () => {
 
 
     it("Log in as a performance glitch user", () => {        
-        // login with a valid user
+        // login with as a performance glitch user
         loginPage.login(performanceGlitchUser.username, performanceGlitchUser.password)
 
         // assert that the user logs in successfully and can see the inventory page, inventory items and cart button after a certain time
@@ -82,7 +82,7 @@ describe("Data Driven Login", () => {
 
 
     it("Log in as a problem user", () => {        
-        // login with a valid user
+        // login as a problem user
         loginPage.login(problemUser.username, problemUser.password)
 
         // assert that the user logs in successfully and can see the inventory page, inventory items and cart button
