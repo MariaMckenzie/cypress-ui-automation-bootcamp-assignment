@@ -5,5 +5,3 @@ const sortByOption = (event) => {
       // select option onclick is not supported in Chrome but works in IE and FF
       return;
     }*/
-
-    console.log("I miss you and how we used to be")

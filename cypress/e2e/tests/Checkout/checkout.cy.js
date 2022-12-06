@@ -11,13 +11,9 @@ describe("Checkout Flow", () => {
     beforeEach(() => {
         //go to base url        
         cy.visit("/")
+
         cy.clearCookies()
-    })
-
-    it("should complete a checkout flow with one item", () => {
-        // variables
-        let itemInfo = [item1.no, item1.name, item1.price]
-
+        
         // assert that the user is on the correct page
         cy.url().should("eq", "https://www.saucedemo.com/")
 
@@ -25,6 +21,11 @@ describe("Checkout Flow", () => {
         cy.get(loginPage.usernameInput).should("be.visible")
         cy.get(loginPage.passwordInput).should("be.visible")               
         cy.get(loginPage.loginButton).should("be.visible")
+    })
+
+    it("should complete a checkout flow with one item", () => {
+        // variables
+        let itemInfo = [item1.no, item1.name, item1.price]
         
         // login with a valid user
         loginPage.login(standardUser.username, standardUser.password)
@@ -52,9 +53,9 @@ describe("Checkout Flow", () => {
 
         // assert that the item is in the cart
         cy.get(cartPage.title).should("have.text", "Your Cart")
-        cy.get(cartPage.getItemInformation(item1.no)).should("exist")
-        cy.get(cartPage.getItemName(item1.no)).should("have.text", itemInfo[1])
-        cy.get(cartPage.getItemPrice(item1.no)).should("have.text", `$${itemInfo[2].toString()}`)
+        cy.get(cartPage.getItemInformation(itemInfo[0])).should("exist")
+        cy.get(cartPage.getItemName(itemInfo[0])).should("have.text", itemInfo[1])
+        cy.get(cartPage.getItemPrice(itemInfo[0])).should("have.text", `$${itemInfo[2].toString()}`)
 
         
         // should checkout successfully
@@ -100,14 +101,6 @@ describe("Checkout Flow", () => {
     it("should complete a checkout flow with one item (from the product page)", () => {
         // variables
         let itemInfo = [item1.no, item1.name, item1.price]
-
-        // assert that the user is on the correct page
-        cy.url().should("eq", "https://www.saucedemo.com/")
-
-        // assert that the input fields for login is visible
-        cy.get(loginPage.usernameInput).should("be.visible")
-        cy.get(loginPage.passwordInput).should("be.visible")               
-        cy.get(loginPage.loginButton).should("be.visible")
         
         // login with a valid user
         loginPage.login(standardUser.username, standardUser.password)
@@ -190,15 +183,7 @@ describe("Checkout Flow", () => {
             [item3.no, item3.name, item3.price],
             [item4.no, item4.name, item4.price],
             [item5.no, item5.name, item5.price],
-        ], total = itemInfo[0][2] + itemInfo[1][2] + itemInfo[2][2]
-
-        // assert that the user is on the correct page
-        cy.url().should("eq", "https://www.saucedemo.com/")
-
-        // assert that the input fields for login is visible
-        cy.get(loginPage.usernameInput).should("be.visible")
-        cy.get(loginPage.passwordInput).should("be.visible")               
-        cy.get(loginPage.loginButton).should("be.visible") 
+        ], total = itemInfo[0][2] + itemInfo[1][2] + itemInfo[2][2] 
         
         // login with a valid user
         loginPage.login(standardUser.username, standardUser.password)
@@ -291,15 +276,7 @@ describe("Checkout Flow", () => {
         let itemInfo = [
             [item3.no, item3.name, item3.price],
             [item6.no, item6.name, item6.price],
-        ], total = itemInfo[0][2] + itemInfo[1][2] 
-
-        // assert that the user is on the correct page
-        cy.url().should("eq", "https://www.saucedemo.com/")
-
-        // assert that the input fields for login is visible
-        cy.get(loginPage.usernameInput).should("be.visible")
-        cy.get(loginPage.passwordInput).should("be.visible")               
-        cy.get(loginPage.loginButton).should("be.visible") 
+        ], total = itemInfo[0][2] + itemInfo[1][2]  
         
         // login with a valid user
         loginPage.login(standardUser.username, standardUser.password)
@@ -397,15 +374,7 @@ describe("Checkout Flow", () => {
         let itemInfo = [
             [item3.no, item3.name, item3.price],
             [item6.no, item6.name, item6.price],
-        ], total = itemInfo[0][2] + itemInfo[1][2] 
-
-        // assert that the user is on the correct page
-        cy.url().should("eq", "https://www.saucedemo.com/")
-
-        // assert that the input fields for login is visible
-        cy.get(loginPage.usernameInput).should("be.visible")
-        cy.get(loginPage.passwordInput).should("be.visible")               
-        cy.get(loginPage.loginButton).should("be.visible") 
+        ], total = itemInfo[0][2] + itemInfo[1][2]  
         
         // login with a valid user
         loginPage.login(standardUser.username, standardUser.password)
