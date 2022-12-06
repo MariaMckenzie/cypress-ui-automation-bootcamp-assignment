@@ -32,31 +32,7 @@ class Inventory {
     /**
      * @returns the sort dropdown selection
      */
-    get sortSelection () { return ("select .product_sort_container") }
-
-    
-    /**
-     * @returns option 1 in the dropdown (a-z)
-     */
-    get azNameOption () { return (".product_sort_container > option[value='az']") }
-
-
-    /**
-     * @returns option 2 in the dropdown (z-a)
-     */
-    get zaNameOption () { return (".product_sort_container > option[value='za']") }
-
-
-    /**
-     * @returns option 3 in the dropdown (low - high)
-     */
-    get ascendingPriceOption () { return (".product_sort_container > option[value='lohi']") }
-
-
-    /**
-     * @returns option 4 in the dropdown (high - low)
-     */
-    get descendingPriceOption () { return (".product_sort_container > option[value='hilo']") }
+    get sortSelection () { return ("[data-test='product_sort_container']") }
 
     
     /**
@@ -179,8 +155,7 @@ class Inventory {
      * Sort by name in ascending order
      */
     azSort () {
-        cy.get(this.sortSelection).click()
-        cy.get(this.azNameOption).select()
+        cy.get(this.sortSelection).select(0)
     }
 
 
@@ -188,16 +163,14 @@ class Inventory {
      * Sort by name in descending order
      */
     zaSort () {
-        cy.get(this.sortSelection).click()
-        cy.get(this.zaNameOption).select()
+        cy.get(this.sortSelection).select(1)
     }
 
     /**
      * Sort by price in ascending order
      */
     lohiSort () {
-        cy.get(this.sortSelection).click()
-        cy.get(this.ascendingPriceOption).select()
+        cy.get(this.sortSelection).select(2)
     }
 
 
@@ -205,8 +178,7 @@ class Inventory {
      * Sort by price in descending order
      */
     hiloSort () {
-        cy.get(this.sortSelection).click()
-        cy.get(this.descendingPriceOption).select()
+        cy.get(this.sortSelection).select(3)
     }
 
 }
