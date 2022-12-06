@@ -20,7 +20,13 @@ module.exports = {
     user4: {
         firstname: 'John',
         lastname: 'Doe',
-        postal: '00000',
+        postal: '',
         errorMsg: 'Error: Postal Code is required'
+    },
+    user5: {
+        firstname: '',
+        lastname: '',
+        postal: '',
+        errorMsg: 'Error: First Name is required'
     }
 }
