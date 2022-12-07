@@ -1,0 +1,143 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 3,
+    "passes": 3,
+    "pending": 0,
+    "failures": 0,
+    "start": "2022-12-07T01:29:30.971Z",
+    "end": "2022-12-07T01:29:39.046Z",
+    "duration": 8075,
+    "testsRegistered": 3,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "eab96bf8-dd89-47c4-a53c-545193d50324",
+      "title": "",
+      "fullFile": "cypress\\e2e\\tests\\Cart\\cart.cy.js",
+      "file": "cypress\\e2e\\tests\\Cart\\cart.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "5afc9745-8b48-4dc9-a118-f86931d62f13",
+          "title": "Checkout Flow",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should add and remove one item from cart for standard user",
+              "fullTitle": "Checkout Flow should add and remove one item from cart for standard user",
+              "timedOut": null,
+              "duration": 4440,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// add first item to the cart\n_inventory.default.addToCart(itemInfo[0]); // assert that the item is added to the cart\n\ncy.get(_inventory.default.cartBadge).should(\"be.visible\");\ncy.get(_inventory.default.cartBadge).should(\"have.text\", \"1\"); // should go to cart\ncy.get(\".shopping_cart_link\").click();\ncy.url().should(\"eq\", \"https://www.saucedemo.com/cart.html\"); // assert that the item is in the cart\ncy.get(_cart.default.title).should(\"have.text\", \"Your Cart\");\ncy.get(_cart.default.getItemInformation(itemInfo[0])).should(\"exist\");\ncy.get(_cart.default.getItemName(itemInfo[0])).should(\"have.text\", itemInfo[1]);\ncy.get(_cart.default.getItemPrice(itemInfo[0])).should(\"have.text\", `$${itemInfo[2].toString()}`); // remove from cart \n_cart.default.removeFromCart(1); // assert that the items are removed from the cart\n\ncy.get(_inventory.default.cartBadge).should(\"not.exist\");\ncy.get(_cart.default.cartList).should(\"not.exist\"); // log out user\n_inventory.default.logout(); // assert that the user is logged out\n\ncy.url().should(\"eq\", \"https://www.saucedemo.com/\");",
+              "err": {},
+              "uuid": "370d19d3-46d6-464e-b19d-79de44dd50cf",
+              "parentUUID": "5afc9745-8b48-4dc9-a118-f86931d62f13",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should complete a checkout flow with one item (from the product page) for standard user",
+              "fullTitle": "Checkout Flow should complete a checkout flow with one item (from the product page) for standard user",
+              "timedOut": null,
+              "duration": 1801,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// go to product page\n_inventory.default.goToProductPage(itemInfo[0]); // assert that the user is redirected to the product page\n\ncy.url().should(\"contain\", \"https://www.saucedemo.com/inventory-item\");\n_product.default.addToCart(); // assert that the item is added to the cart\n\ncy.get(_inventory.default.cartBadge).should(\"be.visible\");\ncy.get(_inventory.default.cartBadge).should(\"have.text\", \"1\"); // remove from cart\n_product.default.removeFromCart(); // assert that the items are removed from the cart\n\ncy.get(\".shopping_cart_link\").click();\ncy.url().should(\"eq\", \"https://www.saucedemo.com/cart.html\"); // assert that the item is in the cart\ncy.get(_inventory.default.cartBadge).should(\"not.exist\"); // log out user\n_inventory.default.logout(); // assert that the user is logged out\n\ncy.url().should(\"eq\", \"https://www.saucedemo.com/\");",
+              "err": {},
+              "uuid": "b0cc5b01-cac1-4031-97ac-61bec1206895",
+              "parentUUID": "5afc9745-8b48-4dc9-a118-f86931d62f13",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should complete a checkout flow with one item (from the inventory page) for standard user",
+              "fullTitle": "Checkout Flow should complete a checkout flow with one item (from the inventory page) for standard user",
+              "timedOut": null,
+              "duration": 1775,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// add first item to the cart\n_inventory.default.addToCart(itemInfo[0]); // assert that the item is added to the cart\n\ncy.get(_inventory.default.cartBadge).should(\"be.visible\");\ncy.get(_inventory.default.cartBadge).should(\"have.text\", \"1\"); // remove item from cart\n_inventory.default.removeFromCart(itemInfo[0]); // assert that the items are removed from the cart\n\ncy.get(_inventory.default.cartBadge).should(\"not.exist\");\ncy.get(_cart.default.cartList).should(\"not.exist\"); // log out user\n_inventory.default.logout(); // assert that the user is logged out\n\ncy.url().should(\"eq\", \"https://www.saucedemo.com/\");",
+              "err": {},
+              "uuid": "1e045a5e-82d6-4e7d-b7ca-5a8bb4aa243b",
+              "parentUUID": "5afc9745-8b48-4dc9-a118-f86931d62f13",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "370d19d3-46d6-464e-b19d-79de44dd50cf",
+            "b0cc5b01-cac1-4031-97ac-61bec1206895",
+            "1e045a5e-82d6-4e7d-b7ca-5a8bb4aa243b"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 8016,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}

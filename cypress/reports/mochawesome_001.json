@@ -1,0 +1,181 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 5,
+    "passes": 5,
+    "pending": 0,
+    "failures": 0,
+    "start": "2022-12-07T01:29:45.008Z",
+    "end": "2022-12-07T01:30:01.994Z",
+    "duration": 16986,
+    "testsRegistered": 5,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "0780c95a-360e-48e6-8105-abb8bf7f21f7",
+      "title": "",
+      "fullFile": "cypress\\e2e\\tests\\Checkout\\checkout.cy.js",
+      "file": "cypress\\e2e\\tests\\Checkout\\checkout.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "416a5b5c-179e-4db9-a055-d250faa6e0b0",
+          "title": "Checkout Flow",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should complete a checkout flow with one item",
+              "fullTitle": "Checkout Flow should complete a checkout flow with one item",
+              "timedOut": null,
+              "duration": 2804,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// variables\nlet itemInfo = [_products.item1.no, _products.item1.name, _products.item1.price]; // login with a valid user\n_login.default.login(_login2.standardUser.username, _login2.standardUser.password); // assert that the user logs in successfully and can see the inventory page, inventory items and cart button\n\ncy.url().should(\"eq\", \"https://www.saucedemo.com/inventory.html\");\ncy.get(_inventory.default.getItemInformation(_products.item1.no)).should(\"be.visible\"); //first item\ncy.get(_inventory.default.getItemName(_products.item1.no)).should(\"have.text\", _products.item1.name);\ncy.get(_inventory.default.getItemInformation(_products.item2.no)).should(\"be.visible\"); //second item\ncy.get(_inventory.default.getItemName(_products.item2.no)).should(\"have.text\", _products.item2.name);\ncy.get(_inventory.default.cartButton).should(\"be.visible\"); // add first item to the cart\n_inventory.default.addToCart(itemInfo[0]); // assert that the item is added to the cart\n\ncy.get(_inventory.default.cartBadge).should(\"be.visible\");\ncy.get(_inventory.default.cartBadge).should(\"have.text\", \"1\"); // should go to cart\ncy.get(\".shopping_cart_link\").click();\ncy.url().should(\"eq\", \"https://www.saucedemo.com/cart.html\"); // assert that the item is in the cart\ncy.get(_cart.default.title).should(\"have.text\", \"Your Cart\");\ncy.get(_cart.default.getItemInformation(itemInfo[0])).should(\"exist\");\ncy.get(_cart.default.getItemName(itemInfo[0])).should(\"have.text\", itemInfo[1]);\ncy.get(_cart.default.getItemPrice(itemInfo[0])).should(\"have.text\", `$${itemInfo[2].toString()}`); // should checkout successfully\n_cart.default.checkout(); // assert that the user moves on to the first step of checkout page\n\ncy.url().should(\"eq\", \"https://www.saucedemo.com/checkout-step-one.html\");\ncy.get(_checkout.default.title).should(\"have.text\", \"Checkout: Your Information\");\ncy.get(_checkout.default.firstnameInput).should(\"be.visible\");\ncy.get(_checkout.default.lastnameInput).should(\"be.visible\");\ncy.get(_checkout.default.continueButton).should(\"be.visible\"); // continue to step two\n_checkout.default.continueToStepTwo(_users.user1.firstname, _users.user1.lastname, _users.user1.postal); // assert that the user is at step two\n\ncy.url().should(\"eq\", \"https://www.saucedemo.com/checkout-step-two.html\");\ncy.get(_checkout.default.title).should(\"have.text\", \"Checkout: Overview\"); // assert that the item selected is the same in checkout and the subtotal is correct\ncy.get(_checkout.default.checkCartItemName(1)).should(\"have.text\", itemInfo[1]);\ncy.get(_checkout.default.checkCartItemPrice(1)).should(\"have.text\", `$${itemInfo[2]}`);\ncy.get(_checkout.default.subtotal).should(\"have.text\", `Item total: $${itemInfo[2]}`); //confirm total cost of items before tax\n// complete checkout\n_checkout.default.completeStepTwo(); // assert that checkout is complete\n\ncy.url().should(\"eq\", \"https://www.saucedemo.com/checkout-complete.html\");\ncy.get(_checkout.default.title).should(\"have.text\", \"Checkout: Complete!\");\ncy.get(_checkout.default.thankyouTitle).should(\"have.text\", \"THANK YOU FOR YOUR ORDER\");\ncy.get(_checkout.default.thankyouText).should(\"have.text\", \"Your order has been dispatched, and will arrive just as fast as the pony can get there!\");\ncy.get(_checkout.default.backButton).should(\"be.visible\"); // log out user\n_inventory.default.logout(); // assert that the user is logged out\n\ncy.url().should(\"eq\", \"https://www.saucedemo.com/\");",
+              "err": {},
+              "uuid": "688a72d8-4a03-4a0f-87e7-3430f61b2fb3",
+              "parentUUID": "416a5b5c-179e-4db9-a055-d250faa6e0b0",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should complete a checkout flow with one item (from the product page)",
+              "fullTitle": "Checkout Flow should complete a checkout flow with one item (from the product page)",
+              "timedOut": null,
+              "duration": 2964,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// variables\nlet itemInfo = [_products.item1.no, _products.item1.name, _products.item1.price]; // login with a valid user\n_login.default.login(_login2.standardUser.username, _login2.standardUser.password); // assert that the user logs in successfully and can see the inventory page, inventory items and cart button\n\ncy.url().should(\"eq\", \"https://www.saucedemo.com/inventory.html\");\ncy.get(_inventory.default.getItemInformation(_products.item1.no)).should(\"be.visible\"); //first item\ncy.get(_inventory.default.getItemName(_products.item1.no)).should(\"have.text\", _products.item1.name);\ncy.get(_inventory.default.getItemInformation(_products.item2.no)).should(\"be.visible\"); //second item\ncy.get(_inventory.default.getItemName(_products.item2.no)).should(\"have.text\", _products.item2.name);\ncy.get(_inventory.default.cartButton).should(\"be.visible\"); // go to product page\n_inventory.default.goToProductPage(itemInfo[0]); // assert that the user is redirected to the product page\n\ncy.url().should(\"contain\", \"https://www.saucedemo.com/inventory-item\");\n_product.default.addToCart(); // assert that the item is added to the cart\n\ncy.get(_inventory.default.cartBadge).should(\"be.visible\");\ncy.get(_inventory.default.cartBadge).should(\"have.text\", \"1\"); // should go to cart\ncy.get(\".shopping_cart_link\").click();\ncy.url().should(\"eq\", \"https://www.saucedemo.com/cart.html\"); // assert that the item is in the cart\ncy.get(_cart.default.title).should(\"have.text\", \"Your Cart\");\ncy.get(_cart.default.getItemInformation(_products.item1.no)).should(\"exist\");\ncy.get(_cart.default.getItemName(_products.item1.no)).should(\"have.text\", itemInfo[1]);\ncy.get(_cart.default.getItemPrice(_products.item1.no)).should(\"have.text\", `$${itemInfo[2].toString()}`); // should checkout successfully\n_cart.default.checkout(); // assert that the user moves on to the first step of checkout page\n\ncy.url().should(\"eq\", \"https://www.saucedemo.com/checkout-step-one.html\");\ncy.get(_checkout.default.title).should(\"have.text\", \"Checkout: Your Information\");\ncy.get(_checkout.default.firstnameInput).should(\"be.visible\");\ncy.get(_checkout.default.lastnameInput).should(\"be.visible\");\ncy.get(_checkout.default.continueButton).should(\"be.visible\"); // continue to step two\n_checkout.default.continueToStepTwo(_users.user1.firstname, _users.user1.lastname, _users.user1.postal); // assert that the user is at step two\n\ncy.url().should(\"eq\", \"https://www.saucedemo.com/checkout-step-two.html\");\ncy.get(_checkout.default.title).should(\"have.text\", \"Checkout: Overview\"); // assert that the item selected is the same in checkout and the subtotal is correct\ncy.get(_checkout.default.checkCartItemName(1)).should(\"have.text\", itemInfo[1]);\ncy.get(_checkout.default.checkCartItemPrice(1)).should(\"have.text\", `$${itemInfo[2]}`);\ncy.get(_checkout.default.subtotal).should(\"have.text\", `Item total: $${itemInfo[2]}`); //confirm total cost of items before tax\n// complete checkout\n_checkout.default.completeStepTwo(); // assert that checkout is complete\n\ncy.url().should(\"eq\", \"https://www.saucedemo.com/checkout-complete.html\");\ncy.get(_checkout.default.title).should(\"have.text\", \"Checkout: Complete!\");\ncy.get(_checkout.default.thankyouTitle).should(\"have.text\", \"THANK YOU FOR YOUR ORDER\");\ncy.get(_checkout.default.thankyouText).should(\"have.text\", \"Your order has been dispatched, and will arrive just as fast as the pony can get there!\");\ncy.get(_checkout.default.backButton).should(\"be.visible\"); // log out user\n_inventory.default.logout(); // assert that the user is logged out\n\ncy.url().should(\"eq\", \"https://www.saucedemo.com/\");",
+              "err": {},
+              "uuid": "489f73a9-4f5b-47f7-8d10-c8d14fa8deb1",
+              "parentUUID": "416a5b5c-179e-4db9-a055-d250faa6e0b0",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should complete a checkout flow with multiple items",
+              "fullTitle": "Checkout Flow should complete a checkout flow with multiple items",
+              "timedOut": null,
+              "duration": 2790,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// variables\nlet itemInfo = [[_products.item3.no, _products.item3.name, _products.item3.price], [_products.item4.no, _products.item4.name, _products.item4.price], [_products.item5.no, _products.item5.name, _products.item5.price]],\n    total = itemInfo[0][2] + itemInfo[1][2] + itemInfo[2][2]; // login with a valid user\n_login.default.login(_login2.standardUser.username, _login2.standardUser.password); // assert that the user logs in successfully and can see the inventory page, inventory items and cart button\n\ncy.url().should(\"eq\", \"https://www.saucedemo.com/inventory.html\");\ncy.get(_inventory.default.getItemInformation(_products.item1.no)).should(\"be.visible\"); //first item\ncy.get(_inventory.default.getItemName(_products.item1.no)).should(\"have.text\", _products.item1.name);\ncy.get(_inventory.default.getItemInformation(_products.item4.no)).should(\"be.visible\"); //second item\ncy.get(_inventory.default.getItemName(_products.item4.no)).should(\"have.text\", _products.item4.name);\ncy.get(_inventory.default.cartButton).should(\"be.visible\"); // add some items to the cart\n_inventory.default.addToCart(itemInfo[0][0]);\n_inventory.default.addToCart(itemInfo[1][0]);\n_inventory.default.addToCart(itemInfo[2][0]); // assert that the items are added to the cart\n\ncy.get(_inventory.default.cartBadge).should(\"be.visible\");\ncy.get(_inventory.default.cartBadge).should(\"have.text\", \"3\"); // should go to cart\ncy.get(\".shopping_cart_link\").click();\ncy.url().should(\"eq\", \"https://www.saucedemo.com/cart.html\"); // assert that the items are in the cart\ncy.get(_cart.default.title).should(\"have.text\", \"Your Cart\");\ncy.get(_cart.default.getItemInformation(1)).should(\"exist\");\ncy.get(_cart.default.getItemName(1)).should(\"have.text\", itemInfo[0][1]);\ncy.get(_cart.default.getItemPrice(1)).should(\"have.text\", `$${itemInfo[0][2].toString()}`);\ncy.get(_cart.default.getItemInformation(2)).should(\"exist\");\ncy.get(_cart.default.getItemName(2)).should(\"have.text\", itemInfo[1][1]);\ncy.get(_cart.default.getItemPrice(2)).should(\"have.text\", `$${itemInfo[1][2].toString()}`);\ncy.get(_cart.default.getItemInformation(3)).should(\"exist\");\ncy.get(_cart.default.getItemName(3)).should(\"have.text\", itemInfo[2][1]);\ncy.get(_cart.default.getItemPrice(3)).should(\"have.text\", `$${itemInfo[2][2].toString()}`); // should checkout successfully\n_cart.default.checkout(); // assert that the user moves on to the first step of checkout page\n\ncy.url().should(\"eq\", \"https://www.saucedemo.com/checkout-step-one.html\");\ncy.get(_checkout.default.title).should(\"have.text\", \"Checkout: Your Information\");\ncy.get(_checkout.default.firstnameInput).should(\"be.visible\");\ncy.get(_checkout.default.lastnameInput).should(\"be.visible\");\ncy.get(_checkout.default.continueButton).should(\"be.visible\"); // continue to step two\n_checkout.default.continueToStepTwo(_users.user1.firstname, _users.user1.lastname, _users.user1.postal); // assert that the user is at step two\n\ncy.url().should(\"eq\", \"https://www.saucedemo.com/checkout-step-two.html\");\ncy.get(_checkout.default.title).should(\"have.text\", \"Checkout: Overview\"); // assert that the items selected are the same in checkout and the subtotal is correct\ncy.get(_checkout.default.checkCartItemName(1)).should(\"have.text\", itemInfo[0][1]);\ncy.get(_checkout.default.checkCartItemPrice(1)).should(\"have.text\", `$${itemInfo[0][2]}`);\ncy.get(_checkout.default.checkCartItemName(2)).should(\"have.text\", itemInfo[1][1]);\ncy.get(_checkout.default.checkCartItemPrice(2)).should(\"have.text\", `$${itemInfo[1][2]}`);\ncy.get(_checkout.default.checkCartItemName(3)).should(\"have.text\", itemInfo[2][1]);\ncy.get(_checkout.default.checkCartItemPrice(3)).should(\"have.text\", `$${itemInfo[2][2]}`);\ncy.get(_checkout.default.subtotal).should(\"have.text\", `Item total: $${total}`); //confirm total cost of items before tax\n// complete checkout\n_checkout.default.completeStepTwo(); // assert that checkout is complete\n\ncy.url().should(\"eq\", \"https://www.saucedemo.com/checkout-complete.html\");\ncy.get(_checkout.default.title).should(\"have.text\", \"Checkout: Complete!\");\ncy.get(_checkout.default.thankyouTitle).should(\"have.text\", \"THANK YOU FOR YOUR ORDER\");\ncy.get(_checkout.default.thankyouText).should(\"have.text\", \"Your order has been dispatched, and will arrive just as fast as the pony can get there!\");\ncy.get(_checkout.default.backButton).should(\"be.visible\"); // log out user\n_inventory.default.logout(); // assert that the user is logged out\n\ncy.url().should(\"eq\", \"https://www.saucedemo.com/\");",
+              "err": {},
+              "uuid": "a08f2e4e-0ecc-4627-bbdc-abb91579c31d",
+              "parentUUID": "416a5b5c-179e-4db9-a055-d250faa6e0b0",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should complete a checkout flow with multiple items (from product page)",
+              "fullTitle": "Checkout Flow should complete a checkout flow with multiple items (from product page)",
+              "timedOut": null,
+              "duration": 3240,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// variables\nlet itemInfo = [[_products.item3.no, _products.item3.name, _products.item3.price], [_products.item6.no, _products.item6.name, _products.item6.price]],\n    total = itemInfo[0][2] + itemInfo[1][2]; // login with a valid user\n_login.default.login(_login2.standardUser.username, _login2.standardUser.password); // assert that the user logs in successfully and can see the inventory page, inventory items and cart button\n\ncy.url().should(\"eq\", \"https://www.saucedemo.com/inventory.html\");\ncy.get(_inventory.default.getItemInformation(_products.item1.no)).should(\"be.visible\"); //first item\ncy.get(_inventory.default.getItemName(_products.item1.no)).should(\"have.text\", _products.item1.name);\ncy.get(_inventory.default.getItemInformation(_products.item4.no)).should(\"be.visible\"); //second item\ncy.get(_inventory.default.getItemName(_products.item4.no)).should(\"have.text\", _products.item4.name);\ncy.get(_inventory.default.cartButton).should(\"be.visible\"); // go to product page (item 1)\n_inventory.default.goToProductPage(itemInfo[0][0]); // assert that the user is redirected to the product page\n\ncy.url().should(\"contain\", \"https://www.saucedemo.com/inventory-item\");\n_product.default.addToCart(); // go back to inventory page\n\n_product.default.goToInventory(); // go to product page (item 2)\n\n_inventory.default.goToProductPage(itemInfo[1][0]); // assert that the user is redirected to the product page\n\ncy.url().should(\"contain\", \"https://www.saucedemo.com/inventory-item\");\n_product.default.addToCart(); // assert that the items are added to the cart\n\ncy.get(_inventory.default.cartBadge).should(\"be.visible\");\ncy.get(_inventory.default.cartBadge).should(\"have.text\", \"2\"); // should go to cart\ncy.get(\".shopping_cart_link\").click();\ncy.url().should(\"eq\", \"https://www.saucedemo.com/cart.html\"); // assert that the items are in the cart\ncy.get(_cart.default.title).should(\"have.text\", \"Your Cart\");\ncy.get(_cart.default.getItemInformation(1)).should(\"exist\");\ncy.get(_cart.default.getItemName(1)).should(\"have.text\", itemInfo[0][1]);\ncy.get(_cart.default.getItemPrice(1)).should(\"have.text\", `$${itemInfo[0][2].toString()}`);\ncy.get(_cart.default.getItemInformation(2)).should(\"exist\");\ncy.get(_cart.default.getItemName(2)).should(\"have.text\", itemInfo[1][1]);\ncy.get(_cart.default.getItemPrice(2)).should(\"have.text\", `$${itemInfo[1][2].toString()}`); // should checkout successfully\n_cart.default.checkout(); // assert that the user moves on to the first step of checkout page\n\ncy.url().should(\"eq\", \"https://www.saucedemo.com/checkout-step-one.html\");\ncy.get(_checkout.default.title).should(\"have.text\", \"Checkout: Your Information\");\ncy.get(_checkout.default.firstnameInput).should(\"be.visible\");\ncy.get(_checkout.default.lastnameInput).should(\"be.visible\");\ncy.get(_checkout.default.continueButton).should(\"be.visible\"); // continue to step two\n_checkout.default.continueToStepTwo(_users.user1.firstname, _users.user1.lastname, _users.user1.postal); // assert that the user is at step two\n\ncy.url().should(\"eq\", \"https://www.saucedemo.com/checkout-step-two.html\");\ncy.get(_checkout.default.title).should(\"have.text\", \"Checkout: Overview\"); // assert that the items selected are the same in checkout and the subtotal is correct\ncy.get(_checkout.default.checkCartItemName(1)).should(\"have.text\", itemInfo[0][1]);\ncy.get(_checkout.default.checkCartItemPrice(1)).should(\"have.text\", `$${itemInfo[0][2]}`);\ncy.get(_checkout.default.checkCartItemName(2)).should(\"have.text\", itemInfo[1][1]);\ncy.get(_checkout.default.checkCartItemPrice(2)).should(\"have.text\", `$${itemInfo[1][2]}`);\ncy.get(_checkout.default.subtotal).should(\"have.text\", `Item total: $${total}`); //confirm total cost of items before tax\n// complete checkout\n_checkout.default.completeStepTwo(); // assert that checkout is complete\n\ncy.url().should(\"eq\", \"https://www.saucedemo.com/checkout-complete.html\");\ncy.get(_checkout.default.title).should(\"have.text\", \"Checkout: Complete!\");\ncy.get(_checkout.default.thankyouTitle).should(\"have.text\", \"THANK YOU FOR YOUR ORDER\");\ncy.get(_checkout.default.thankyouText).should(\"have.text\", \"Your order has been dispatched, and will arrive just as fast as the pony can get there!\");\ncy.get(_checkout.default.backButton).should(\"be.visible\"); // log out user\n_inventory.default.logout(); // assert that the user is logged out\n\ncy.url().should(\"eq\", \"https://www.saucedemo.com/\");",
+              "err": {},
+              "uuid": "6d66cac3-2fbf-4091-8bae-3e7bab49c97c",
+              "parentUUID": "416a5b5c-179e-4db9-a055-d250faa6e0b0",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should not complete a checkout flow without completing the shipping form",
+              "fullTitle": "Checkout Flow should not complete a checkout flow without completing the shipping form",
+              "timedOut": null,
+              "duration": 5102,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// variables\nlet itemInfo = [[_products.item3.no, _products.item3.name, _products.item3.price], [_products.item6.no, _products.item6.name, _products.item6.price]],\n    total = itemInfo[0][2] + itemInfo[1][2]; // login with a valid user\n_login.default.login(_login2.standardUser.username, _login2.standardUser.password); // assert that the user logs in successfully and can see the inventory page, inventory items and cart button\n\ncy.url().should(\"eq\", \"https://www.saucedemo.com/inventory.html\");\ncy.get(_inventory.default.getItemInformation(_products.item1.no)).should(\"be.visible\"); //first item\ncy.get(_inventory.default.getItemName(_products.item1.no)).should(\"have.text\", _products.item1.name);\ncy.get(_inventory.default.getItemInformation(_products.item4.no)).should(\"be.visible\"); //second item\ncy.get(_inventory.default.getItemName(_products.item4.no)).should(\"have.text\", _products.item4.name);\ncy.get(_inventory.default.cartButton).should(\"be.visible\"); // go to product page (item 1)\n_inventory.default.goToProductPage(itemInfo[0][0]); // assert that the user is redirected to the product page\n\ncy.url().should(\"contain\", \"https://www.saucedemo.com/inventory-item\");\n_product.default.addToCart(); // go back to inventory page\n\n_product.default.goToInventory(); // go to product page (item 2)\n\n_inventory.default.goToProductPage(itemInfo[1][0]); // assert that the user is redirected to the product page\n\ncy.url().should(\"contain\", \"https://www.saucedemo.com/inventory-item\");\n_product.default.addToCart(); // assert that the items are added to the cart\n\ncy.get(_inventory.default.cartBadge).should(\"be.visible\");\ncy.get(_inventory.default.cartBadge).should(\"have.text\", \"2\"); // should go to cart\ncy.get(\".shopping_cart_link\").click();\ncy.url().should(\"eq\", \"https://www.saucedemo.com/cart.html\"); // assert that the items are in the cart\ncy.get(_cart.default.title).should(\"have.text\", \"Your Cart\");\ncy.get(_cart.default.getItemInformation(1)).should(\"exist\");\ncy.get(_cart.default.getItemName(1)).should(\"have.text\", itemInfo[0][1]);\ncy.get(_cart.default.getItemPrice(1)).should(\"have.text\", `$${itemInfo[0][2].toString()}`);\ncy.get(_cart.default.getItemInformation(2)).should(\"exist\");\ncy.get(_cart.default.getItemName(2)).should(\"have.text\", itemInfo[1][1]);\ncy.get(_cart.default.getItemPrice(2)).should(\"have.text\", `$${itemInfo[1][2].toString()}`); // should checkout successfully\n_cart.default.checkout(); // assert that the user moves on to the first step of checkout page\n\ncy.url().should(\"eq\", \"https://www.saucedemo.com/checkout-step-one.html\");\ncy.get(_checkout.default.title).should(\"have.text\", \"Checkout: Your Information\");\ncy.get(_checkout.default.firstnameInput).should(\"be.visible\");\ncy.get(_checkout.default.lastnameInput).should(\"be.visible\");\ncy.get(_checkout.default.continueButton).should(\"be.visible\"); // continue to step two and attempt to checkout with all data missing\n_checkout.default.continueToStepTwo(_users.user5.firstname, _users.user5.lastname, _users.user5.postal); // assert that the user cannot move on to step two\n\ncy.get(_checkout.default.errorMessage).should(\"contain\", _users.user5.errorMsg); // continue to step two and attempt to checkout with firstname missing\n_checkout.default.continueToStepTwo(_users.user2.firstname, _users.user2.lastname, _users.user2.postal); // assert that the user cannot move on to step two\n\ncy.get(_checkout.default.errorMessage).should(\"contain\", _users.user2.errorMsg); // clear form\n_checkout.default.clearForm(); // continue to step two and attempt to checkout with lastname missing\n\n_checkout.default.continueToStepTwo(_users.user3.firstname, _users.user3.lastname, _users.user3.postal); // assert that the user cannot move on to step two\n\ncy.get(_checkout.default.errorMessage).should(\"contain\", _users.user3.errorMsg); // clear form\n_checkout.default.clearForm(); // continue to step two and attempt to checkout with postalcode missing\n\n_checkout.default.continueToStepTwo(_users.user4.firstname, _users.user4.lastname, _users.user4.postal); // assert that the user cannot move on to step two\n\ncy.get(_checkout.default.errorMessage).should(\"contain\", _users.user4.errorMsg); // clear form\n_checkout.default.clearForm();",
+              "err": {},
+              "uuid": "f3279523-6d6a-489f-ad9a-6a9429bef0a2",
+              "parentUUID": "416a5b5c-179e-4db9-a055-d250faa6e0b0",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "688a72d8-4a03-4a0f-87e7-3430f61b2fb3",
+            "489f73a9-4f5b-47f7-8d10-c8d14fa8deb1",
+            "a08f2e4e-0ecc-4627-bbdc-abb91579c31d",
+            "6d66cac3-2fbf-4091-8bae-3e7bab49c97c",
+            "f3279523-6d6a-489f-ad9a-6a9429bef0a2"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 16900,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}

@@ -1,0 +1,162 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 4,
+    "passes": 4,
+    "pending": 0,
+    "failures": 0,
+    "start": "2022-12-07T01:30:26.557Z",
+    "end": "2022-12-07T01:30:33.650Z",
+    "duration": 7093,
+    "testsRegistered": 4,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "48820e24-0332-493e-9b38-6178d1228571",
+      "title": "",
+      "fullFile": "cypress\\e2e\\tests\\Sort\\sort1.cy.js",
+      "file": "cypress\\e2e\\tests\\Sort\\sort1.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "17f72e5e-a798-4a01-9256-e405c0eedb6d",
+          "title": "Sort as a standard user",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Should sort by name in ascending order",
+              "fullTitle": "Sort as a standard user Should sort by name in ascending order",
+              "timedOut": null,
+              "duration": 1399,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// sort by name in ascending order\ncy.get(_inventory.default.sortSelection).select(0);\nitemsLst.sort(function (a, b) {\n  return a[0].localeCompare(b[0]);\n}); // sort items list\n// assert that the items are sorted correctly - default sorting\ncy.get(_inventory.default.getItemName(1)).should(\"have.text\", itemsLst[0][0]);\ncy.get(_inventory.default.getItemName(2)).should(\"have.text\", itemsLst[1][0]);\ncy.get(_inventory.default.getItemName(3)).should(\"have.text\", itemsLst[2][0]);\ncy.get(_inventory.default.getItemName(4)).should(\"have.text\", itemsLst[3][0]);\ncy.get(_inventory.default.getItemName(5)).should(\"have.text\", itemsLst[4][0]);\ncy.get(_inventory.default.getItemName(6)).should(\"have.text\", itemsLst[5][0]);",
+              "err": {},
+              "uuid": "78f9bd1f-0177-4ae5-ae4e-501f6eb91bfa",
+              "parentUUID": "17f72e5e-a798-4a01-9256-e405c0eedb6d",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Should sort by name in descending order",
+              "fullTitle": "Sort as a standard user Should sort by name in descending order",
+              "timedOut": null,
+              "duration": 1227,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// sort by name in descending order\n_inventory.default.zaSort();\nitemsLst.sort(function (a, b) {\n  return b[0].localeCompare(a[0]);\n}); // sort items list\n// assert that the items are sorted correctly\ncy.get(_inventory.default.getItemName(1)).should(\"have.text\", itemsLst[0][0]);\ncy.get(_inventory.default.getItemName(2)).should(\"have.text\", itemsLst[1][0]);\ncy.get(_inventory.default.getItemName(3)).should(\"have.text\", itemsLst[2][0]);\ncy.get(_inventory.default.getItemName(4)).should(\"have.text\", itemsLst[3][0]);\ncy.get(_inventory.default.getItemName(5)).should(\"have.text\", itemsLst[4][0]);\ncy.get(_inventory.default.getItemName(6)).should(\"have.text\", itemsLst[5][0]);",
+              "err": {},
+              "uuid": "7b899f0a-b0c6-4105-bdbe-2fb09065e52e",
+              "parentUUID": "17f72e5e-a798-4a01-9256-e405c0eedb6d",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Should sort by price in ascending order",
+              "fullTitle": "Sort as a standard user Should sort by price in ascending order",
+              "timedOut": null,
+              "duration": 1160,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// sort by price in ascending order\n_inventory.default.lohiSort();\nitemsLst.sort(function (a, b) {\n  if (a[1] === b[1]) {\n    return a[0].localeCompare(b[0]);\n  }\n  return a[1] - b[1];\n}); // sort items list\n// assert that the items are sorted correctly\ncy.get(_inventory.default.getItemName(1)).should(\"have.text\", itemsLst[0][0]);\ncy.get(_inventory.default.getItemName(2)).should(\"have.text\", itemsLst[1][0]);\ncy.get(_inventory.default.getItemName(3)).should(\"have.text\", itemsLst[2][0]);\ncy.get(_inventory.default.getItemName(4)).should(\"have.text\", itemsLst[3][0]);\ncy.get(_inventory.default.getItemName(5)).should(\"have.text\", itemsLst[4][0]);\ncy.get(_inventory.default.getItemName(6)).should(\"have.text\", itemsLst[5][0]);",
+              "err": {},
+              "uuid": "8102fc9f-9427-4b35-9ab5-cfe3fca767c7",
+              "parentUUID": "17f72e5e-a798-4a01-9256-e405c0eedb6d",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Should sort by price in descending order",
+              "fullTitle": "Sort as a standard user Should sort by price in descending order",
+              "timedOut": null,
+              "duration": 1108,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// sort by price in descending order\n_inventory.default.hiloSort();\nitemsLst.sort(function (a, b) {\n  if (a[1] === b[1]) {\n    return a[0].localeCompare(b[0]);\n  }\n  return b[1] - a[1];\n}); // sort items list\n// assert that the items are sorted correctly\ncy.get(_inventory.default.getItemName(1)).should(\"have.text\", itemsLst[0][0]);\ncy.get(_inventory.default.getItemName(2)).should(\"have.text\", itemsLst[1][0]);\ncy.get(_inventory.default.getItemName(3)).should(\"have.text\", itemsLst[2][0]);\ncy.get(_inventory.default.getItemName(4)).should(\"have.text\", itemsLst[3][0]);\ncy.get(_inventory.default.getItemName(5)).should(\"have.text\", itemsLst[4][0]);\ncy.get(_inventory.default.getItemName(6)).should(\"have.text\", itemsLst[5][0]);",
+              "err": {},
+              "uuid": "35f1c7f1-46f2-4226-9629-c8668047d890",
+              "parentUUID": "17f72e5e-a798-4a01-9256-e405c0eedb6d",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "78f9bd1f-0177-4ae5-ae4e-501f6eb91bfa",
+            "7b899f0a-b0c6-4105-bdbe-2fb09065e52e",
+            "8102fc9f-9427-4b35-9ab5-cfe3fca767c7",
+            "35f1c7f1-46f2-4226-9629-c8668047d890"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 4894,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}

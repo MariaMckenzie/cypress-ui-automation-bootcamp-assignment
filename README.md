@@ -25,7 +25,7 @@ Execute the Cypress GUI
 
 Execute the Cypress via commandline
 
-```npm run cypress:run```
+```npx cypress run```
 
 Executes all tests in the Chrome browser and generates a Mochawesome report.
 
@@ -40,10 +40,10 @@ Executes all tests in the Chrome browser and generates a Mochawesome report.
 
 Without Report
 
-```npm run cypress:spec cypress/e2e/test/InClassActivities/activity4.cy.js```
+```npx cypress run --spec cypress/e2e/tests/Sort/sort1.cy.js```
 
 OR
 
 With Report
 
-```npm run test:spec cypress/e2e/test/InClassActivities/activity4.cy.js```
+```npm run test:spec cypress/e2e/tests/Sort/sort1.cy.js```
