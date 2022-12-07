@@ -32,7 +32,7 @@ Executes all tests in the Chrome browser and generates a Mochawesome report.
 ```npm test``` 
 
 # Execute tests in a different browser
-```npm cypress:run --browser firefox```
+```npx cypress run --browser firefox```
 
 ***N.B. The browser must be installed on the device.***
 
